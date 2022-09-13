@@ -1,0 +1,51 @@
+.tableList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  width: border-box;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  border: 5px;
+  width: auto;
+  height: 50px;
+  list-style-type: none;
+}
+
+.hasOrder {
+  border-color: green;
+  width: 75%;
+  height: 75%;
+}
+
+.noOrder {
+  border-color: red;
+  width: 75%;
+  height: 75%;
+}
+
+h1 {
+  color: teal;
+}
+
+.buttonRow {
+  list-style: none;
+  padding-left: 0;
+}
+
+.flex-item {
+  width: 100%;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  float: left;
+}
+
+.botButtonRow {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+/*# sourceMappingURL=waiter-menu.component.css.map */

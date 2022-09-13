@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <p class="display-3"><b>Menu</b></p>
+    <img src="assets/images/burito.png" class="deliveryImg">
+  </div>
+</div>
+
+<br><br>
+<table class="table">
+  <thead class = "tableHead">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Price</th>
+    <th scope="col">Ingredients</th>
+    <th scope="col">Edit/Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="menuItem" *ngFor="let menu of menuList">
+    <th scope="row">{{menu.name}}</th>
+    <td>{{menu.description}}</td>
+    <td>{{menu.price}}</td>
+    <td>
+      <button mat-raised-button (click)="openIngredientsDialog(menu)">See Ingredients</button>
+    </td>
+    <td class="text-right">
+      <button *ngIf="isAuth" mat-button (click)="openEditMenuDialog(menu)"><b>Edit</b></button>
+      <button *ngIf="isAuth" mat-button (click)="deleteMenuItem(menu)"><b>Delete</b></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button mat-button (click)="openAddCategoryDialog()" class = "addCategoryButton">Add Category</button>
+<table class="table">
+  <thead class = "tableHead">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col" class="text-center">Category</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="menuItem" *ngFor="let category of categories; let i = index">
+    <th scope="row" >{{i+1}}</th>
+    <td class="text-center">{{category.category}}</td>
+    <td>
+      <button *ngIf="isAuth" mat-button (click)="openEditCategoryDialog(category)"><b>Edit</b></button>
+    </td>
+    <td>
+      <button *ngIf="isAuth" mat-button (click)="deleteCategoryItem(category)"><b>Delete</b></button>
+    </td>
+  </tr>
+  </tbody>
+</table>

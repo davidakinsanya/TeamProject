@@ -1,0 +1,84 @@
+$noOrder: red
+$hasOrder: green
+$h1Col: teal
+$btnSize: 75%
+
+$tableButCol: brown
+
+.tableList
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr))
+  gap: 1rem
+  width: border-box
+
+.toolBar
+  background-color: #76cfb9
+  z-index: 1
+  color: white
+  position: fixed
+
+.toolBarTitle
+  font-family: 'Raleway', sans-serif
+  font-size: 50px
+  padding-left: 410px
+
+.quickAddButton
+  width: 35px
+  height: 35px
+
+li
+  display: flex
+  flex-direction: row
+  border: 5px
+  width: auto
+  height: 50px
+  list-style-type: none
+
+.hasOrder
+  border-color: $hasOrder
+  width: $btnSize
+  height: $btnSize
+
+.noOrder
+  border-color: $noOrder
+  width: $btnSize
+  height: $btnSize
+
+.readyToOrder
+  border-color: $hasOrder
+  width: $btnSize
+  height: $btnSize
+
+.noIsReadyToOrder
+  border-color: $noOrder
+  width: $btnSize
+  height: $btnSize
+
+.addOrder
+  border-color: yellow
+
+.tableBut
+  border-color: $tableButCol
+  width: $btnSize
+  height: $btnSize
+
+.buttonRow
+  list-style: none
+  padding-left: 0
+
+.flex-item
+  width: 100%
+  -webkit-flex-direction: column
+  flex-direction: column
+  float: left
+
+.botButtonRow
+  width: 100%
+  position: absolute
+  bottom: 0
+
+.spacer
+  flex: 1 1 auto
+
+.notifications
+  padding: 30px

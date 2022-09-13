@@ -1,0 +1,97 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content class="container">
+  <div class="row">
+    <mat-form-field class="col">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="data.menu.name"/>
+    </mat-form-field>
+    <mat-form-field class="col">
+      <mat-label>Price(suggested)</mat-label>
+      <input matInput class="fixInput" [(ngModel)]="data.menu.price"/>
+      <span *ngIf = "suggestedPriceRange[0] != 0 else noSuggestionBlock">
+        {{suggestedPriceRange[0]}} - {{suggestedPriceRange[1]}} $
+      </span>
+      <ng-template #noSuggestionBlock><span *ngIf = "this.data.hasMenuItem == undefined">0$</span></ng-template>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="col">
+      <mat-label>Ingredient</mat-label>
+      <mat-select placeholder="Ingredient" [(ngModel)]="data.menu.ingredients" multiple>
+        <mat-option *ngFor="let ing of ingredients" [value]="ing.id" (click) = "updateSuggestedPriceRange()">{{ing.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col">
+      <mat-label>Description</mat-label>
+      <textarea matInput class="fixInput" [(ngModel)]="data.menu.description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="col">
+      <mat-label>Picture URL</mat-label>
+      <textarea matInput [(ngModel)] = "data.menu.pictureUrl"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <div class="col" *ngFor="let category of categories;  let i = index">
+      <mat-radio-button (change)="changeCategory(category)"
+                        [checked]="isSelectedCat(category)">{{category.category}}</mat-radio-button>
+    </div>
+  </div>
+  <!--  Adds whitespace  -->
+  <div class="row">
+    <hr>
+  </div>
+  <div class="row">
+    <h3>Allergens</h3>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-list-item >
+        <mat-checkbox [(ngModel)]="data.menu.fish">Fish</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item >
+        <mat-checkbox [(ngModel)]="data.menu.gluten">Gluten</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item >
+        <mat-checkbox [(ngModel)]="data.menu.lupin">Lupin</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item >
+        <mat-checkbox [(ngModel)]="data.menu.milk">Milk</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-checkbox [(ngModel)]="data.menu.sulphites">Sulphites</mat-checkbox>
+      </mat-list-item>
+    </div>
+    <div class="col">
+      <mat-list-item>
+        <mat-checkbox [(ngModel)]="data.menu.molluscs">Molluscs</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-checkbox [(ngModel)]="data.menu.mustard">Mustard</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-checkbox [(ngModel)]="data.menu.nuts">Nuts</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-checkbox [(ngModel)]="data.menu.sesameSeeds">Sesame Seeds</mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-checkbox [(ngModel)]="data.menu.soya">Soya</mat-checkbox>
+      </mat-list-item>
+    </div>
+    <div class="col">
+      <h3>Calories</h3><span><b>{{data.menu.calories}}</b></span>
+      <mat-slider thumbLabel
+                  [displayWith]="setCalories"
+                  tickInterval="100"
+                  min="1"
+                  max="2000"
+                  (input)="onCaloriesChange($event)">
+      </mat-slider>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="closeDialog()">Ok</button>
+</mat-dialog-actions>
